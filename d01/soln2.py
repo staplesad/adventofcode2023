@@ -9,8 +9,8 @@ def find_number(line):
             return c
         else:
             running_number += c
-            if not any(d.startswith(running_number) for d in all_digits):
-                running_number = c
+            while not any(d.startswith(running_number) for d in all_digits):
+                running_number = running_number[1:]
             if any(d == running_number for d in all_digits):
                 return str(all_digits.index(running_number) + 1)
     return 0
@@ -18,17 +18,14 @@ def find_number(line):
 def find_rev_number(line):
     running_number = ""
     for c in line:
-        #print("char", c)
-        #print("1", running_number)
         if c.isdigit():
             return c
         else:
             running_number += c
-            if not any(d.endswith(running_number[::-1]) for d in all_digits):
-                running_number = c
+            while not any(d.endswith(running_number[::-1]) for d in all_digits):
+                running_number = running_number[1:]
             if any(d == running_number[::-1] for d in all_digits):
                 return str(all_digits.index(running_number[::-1]) + 1)
-        #print("2", running_number)
     return 0
 
 
@@ -51,8 +48,6 @@ def read_input(filename):
 def get_soln(filename):
     inp = read_input(filename)
     vals = calibration_values(inp)
-    print(vals)
-    print(len(vals))
     return sum(vals)
 
 if __name__ == '__main__':
