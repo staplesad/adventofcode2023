@@ -38,11 +38,9 @@ def toNum(parts):
 def solve(engine):
     parts = []
     for j, row in enumerate(engine):
-#        print(j)
         start = None
         end = None
         for i, checkpoint in enumerate(row):
-#            print(i, checkpoint)
             if isinstance(checkpoint, int):
                 if start is None:
                     start = i
@@ -57,7 +55,6 @@ def solve(engine):
                 parts.append(row[start:end+1])
             start, end = None, None
     parts = toNum(parts)
-#    print(parts)
     return sum(parts)
 
 def parse_input(filename):
@@ -86,5 +83,4 @@ if __name__=='__main__':
     else:
         filename = sys.argv[1]
     engine = parse_input(filename)
-#    print(engine)
     print(solve(engine))
